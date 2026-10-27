@@ -271,4 +271,83 @@
     };
     stIn.addEventListener('input', hitungStat); hitungStat();
   }
+  // ---------- B.5 Arena Baru: Bakteri ----------
+  var bkBtn=document.getElementById('bakteriBelah');
+  if(bkBtn){
+    var nB=0;
+    var renderBakteri=function(){
+      var count=Math.pow(2,nB);
+      var big=document.getElementById('bakteriCount');
+      big.textContent=count.toLocaleString('id-ID');
+      big.classList.remove('pop'); void big.offsetWidth; big.classList.add('pop');
+      document.getElementById('bakteriInfo').textContent='Pembelahan ke-'+nB+': 2^'+nB+' = '+count.toLocaleString('id-ID')+' bakteri';
+      document.getElementById('bakteriGrid').textContent = count<=128 ? '🦠'.repeat(count) : '🦠 × '+count.toLocaleString('id-ID')+' (terlalu banyak untuk digambar satu per satu!)';
+      document.getElementById('bakteriOut').textContent = nB>=10 ? 'Luar biasa! Dari 1 bakteri menjadi '+count.toLocaleString('id-ID')+' hanya dalam 10 pembelahan. Itulah kekuatan pangkat.' : 'Tekan Belahkan lagi. Setiap kali, jumlahnya dikali 2, bukan ditambah 2.';
+    };
+    bkBtn.addEventListener('click', function(){ if(nB<12) nB++; renderBakteri(); });
+    document.getElementById('bakteriReset').addEventListener('click', function(){ nB=0; renderBakteri(); });
+    renderBakteri();
+  }
+  // ---------- B.5 Arena Baru: Lipat Kertas ----------
+  var lpBtn=document.getElementById('lipatBtn');
+  if(lpBtn){
+    var nL=0;
+    var renderLipat=function(){
+      var layers=Math.pow(2,nL), tebalMm=0.1*layers, tebalTxt;
+      if(tebalMm<10) tebalTxt=fmt(tebalMm)+' mm';
+      else if(tebalMm<1000) tebalTxt=fmt(tebalMm/10)+' cm';
+      else tebalTxt=fmt(tebalMm/1000)+' m';
+      document.getElementById('lipatOut').textContent='Lipatan ke-'+nL+': '+layers.toLocaleString('id-ID')+' lapis, tebal sekitar '+tebalTxt+'.';
+    };
+    lpBtn.addEventListener('click', function(){ if(nL<20) nL++; renderLipat(); });
+    document.getElementById('lipatReset').addEventListener('click', function(){ nL=0; renderLipat(); });
+    renderLipat();
+  }
+  // ---------- B.5 Arena Baru: Eksponensial vs Linear ----------
+  var tmSlider=document.getElementById('tumbuhN');
+  if(tmSlider){
+    var tmCanvas=document.getElementById('tumbuhCanvas'), tmCtx=tmCanvas.getContext('2d');
+    var gambarTumbuh=function(){
+      var n=parseInt(tmSlider.value,10), exp=Math.pow(2,n), lin=2*n, mx=Math.max(exp,lin,1);
+      var dispW=Math.max(280, tmCanvas.clientWidth||560), dispH=Math.round(dispW*300/560), dpr=Math.min(window.devicePixelRatio||1,2);
+      tmCanvas.width=Math.round(dispW*dpr); tmCanvas.height=Math.round(dispH*dpr);
+      tmCtx.setTransform(dpr,0,0,dpr,0,0);
+      tmCtx.clearRect(0,0,dispW,dispH);
+      tmCtx.fillStyle='#172033'; tmCtx.font='bold 14px system-ui, sans-serif'; tmCtx.textAlign='center';
+      var bw=dispW*0.28, x1=dispW*0.18, x2=dispW*0.58, baseY=dispH-30, hExp=(exp/mx)*(dispH-70), hLin=(lin/mx)*(dispH-70);
+      tmCtx.fillStyle='#ff5ca8'; tmCtx.fillRect(x1, baseY-hExp, bw, hExp);
+      tmCtx.fillStyle='#00c2a8'; tmCtx.fillRect(x2, baseY-hLin, bw, hLin);
+      tmCtx.fillStyle='#172033';
+      tmCtx.fillText('2^'+n+' = '+exp, x1+bw/2, baseY-hExp-8);
+      tmCtx.fillText('2×'+n+' = '+lin, x2+bw/2, baseY-hLin-8);
+      tmCtx.fillText('Eksponensial', x1+bw/2, baseY+18);
+      tmCtx.fillText('Linear', x2+bw/2, baseY+18);
+      document.getElementById('tumbuhOut').textContent='Untuk n = '+n+': 2^'+n+' = '+exp+', sedangkan 2×'+n+' = '+lin+'. Selisihnya '+(exp-lin)+'.';
+    };
+    tmSlider.addEventListener('input', gambarTumbuh);
+    var tmTimer=null; window.addEventListener('resize', function(){ clearTimeout(tmTimer); tmTimer=setTimeout(gambarTumbuh,120); });
+    requestAnimationFrame(gambarTumbuh); setTimeout(gambarTumbuh,50);
+  }
+  // ---------- B.5 Arena Baru: Game Tebak Pangkat ----------
+  var gmBaru=document.getElementById('gameBaru');
+  if(gmBaru){
+    var skor=0, streak=0, jawaban=0;
+    var soalBaru=function(){
+      var basis=2+Math.floor(Math.random()*4), pang=2+Math.floor(Math.random()*4);
+      jawaban=Math.pow(basis,pang);
+      document.getElementById('gameSoal').textContent=basis+'^'+pang+' = ?';
+      document.getElementById('gameJawab').value='';
+      document.getElementById('gameOut').textContent='Tulis jawabanmu, lalu tekan Cek Jawaban.';
+      try{ document.getElementById('gameJawab').focus(); }catch(e){}
+    };
+    gmBaru.addEventListener('click', soalBaru);
+    document.getElementById('gameCek').addEventListener('click', function(){
+      var isi=parseInt(document.getElementById('gameJawab').value,10);
+      if(isNaN(isi)){ document.getElementById('gameOut').textContent='Tulis dulu angkanya, ya.'; return; }
+      if(isi===jawaban){ skor++; streak++; document.getElementById('gameOut').textContent='🎉 Benar! Hebat, lanjut ke soal baru.'; }
+      else{ streak=0; document.getElementById('gameOut').textContent='Belum tepat. Jawaban yang benar adalah '+jawaban+'. Coba soal baru.'; }
+      document.getElementById('gameSkor').textContent='Skor: '+skor+' • Rentetan benar: '+streak;
+    });
+    soalBaru();
+  }
 })();

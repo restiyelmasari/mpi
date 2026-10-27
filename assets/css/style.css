@@ -178,4 +178,9 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding:24px 12px 40p
   :root{--wrap:1900px;--base:22px}
   .hero h1{font-size:72px}
 }
+.big-number{font-size:clamp(44px,10vw,72px);font-weight:900;color:#fff;text-align:center;line-height:1}
+.big-number.pop{animation:pop .3s ease}
+@keyframes pop{0%{transform:scale(.7)}100%{transform:scale(1)}}
+.bakteri-grid{font-size:26px;line-height:1.5;word-break:break-all;background:rgba(255,255,255,.08);border-radius:14px;padding:12px;min-height:60px}
+@media(max-width:480px){.bakteri-grid{font-size:20px}}
 @media print{nav.mainnav,.topbar,.btn,button{display:none!important}.hero{box-shadow:none}}
