@@ -1,0 +1,181 @@
+/* MathQuest Kelas VIII — template BARU, bukan template PLSV kemarin.
+   Responsif: HP kecil, tablet, laptop, sampai TV/PID 52 inci.
+   Prinsipnya: satu kolom di HP, makin lebar makin banyak kolom,
+   huruf dan tombol membesar di layar besar, bukan sekadar melebar. */
+*{box-sizing:border-box}
+:root{
+  --ink:#172033; --muted:#5b6478; --line:#e6e9f2; --bg:#f4f6ff;
+  --bilangan:#ff6b35; --bilangan2:#ffb020;
+  --aljabar:#00a88f; --aljabar2:#7ed957;
+  --geometri:#7c5cff; --geometri2:#ff5ca8;
+  --data:#0087e6; --data2:#00c2a8;
+  --card:#ffffff;
+  --wrap:980px; --base:16px; --gap:16px;
+}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:var(--base)}
+img,canvas,video{max-width:100%;height:auto}
+a{color:#2540d8;text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #ffb020;outline-offset:2px}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:var(--wrap);margin:0 auto;padding:12px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.logo{font-weight:900;letter-spacing:-.5px;font-size:19px}
+.logo span{background:#172033;color:#fff;padding:2px 9px;border-radius:999px;margin-right:6px}
+.school{font-size:13px;color:var(--muted);font-weight:600}
+nav.mainnav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+nav.mainnav a{padding:8px 12px;border-radius:999px;background:#eef1ff;font-weight:700;font-size:14px;color:#172033;white-space:nowrap}
+nav.mainnav a:hover{background:#172033;color:#fff;text-decoration:none}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:18px;width:100%}
+.hero{border-radius:28px;padding:clamp(20px,4vw,36px) clamp(18px,4vw,36px) clamp(18px,3vw,28px);color:#fff;position:relative;overflow:hidden;box-shadow:0 18px 40px rgba(23,32,51,.18)}
+body[data-elemen="bilangan"] .hero{background:linear-gradient(135deg,#ff6b35,#ff9e2c 55%,#ffb020)}
+body[data-elemen="aljabar"] .hero{background:linear-gradient(135deg,#008f7a,#00a88f 55%,#7ed957)}
+body[data-elemen="geometri"] .hero{background:linear-gradient(135deg,#6a4cff,#7c5cff 55%,#ff5ca8)}
+body[data-elemen="data"] .hero{background:linear-gradient(135deg,#0066cc,#0087e6 55%,#00c2a8)}
+body[data-elemen="umum"] .hero{background:linear-gradient(135deg,#172033,#3b4fd8 60%,#ff5ca8)}
+.hero h1{margin:6px 0 8px;font-size:clamp(28px,6vw,44px);line-height:1.05;letter-spacing:-1px}
+.hero p{margin:0;max-width:720px;opacity:.96;font-size:clamp(15px,2.2vw,18px)}
+.hero .symbols{position:absolute;right:14px;top:8px;font-size:52px;opacity:.28;letter-spacing:6px;transform:rotate(8deg)}
+.badge{display:inline-block;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.5);padding:5px 11px;border-radius:999px;font-size:13px;font-weight:800}
+.badge.dark{background:#172033;color:#fff;border-color:#172033}
+.pillrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.pill{background:#fff;color:#172033;border-radius:999px;padding:6px 11px;font-size:13px;font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--gap);margin-top:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 8px 24px rgba(23,32,51,.06);min-width:0}
+.card:has(table){overflow-x:auto}
+.card h2{margin:0 0 8px;font-size:21px;letter-spacing:-.3px}
+.card h3{margin:14px 0 6px;font-size:16px}
+.card p{color:var(--muted);margin:6px 0}
+.card p strong{color:var(--ink)}
+.mission{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+.mission a,.mission div.pos{background:#fff;border:2px solid var(--line);border-radius:18px;padding:14px;text-align:center;font-weight:800;color:#172033}
+.mission .pos small{display:block;color:var(--muted);font-weight:600;font-size:12px;margin-top:4px}
+.mission .pos.done{border-color:#00a88f;background:#eafff8}
+.mission .num{font-size:26px}
+.sticker{display:inline-block;transform:rotate(-2deg);background:#fff7a8;border:2px solid #172033;border-radius:12px;padding:4px 10px;font-weight:900;box-shadow:3px 3px 0 #172033}
+.illus{font-size:64px;line-height:1;text-align:center;background:linear-gradient(180deg,#fff6e5,#ffe9f5);border:2px dashed #ffb020;border-radius:20px;padding:18px 10px}
+.illus small{display:block;font-size:14px;color:#5b6478;font-weight:700;margin-top:8px}
+.lab{background:#172033;color:#eef1ff;border-radius:20px;padding:18px}
+.lab h3{color:#fff;margin-top:0}
+.lab label{display:block;font-weight:700;margin:10px 0 4px;font-size:14px}
+.lab input,.lab select,.lab textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #cbd2e8;font-size:16px;background:#fff;color:#172033}
+.lab .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input,select,textarea{padding:11px;border-radius:12px;border:1.5px solid #cbd2e8;font-size:16px;width:100%}
+button,.btn{border:0;cursor:pointer;background:#172033;color:#fff;padding:12px 18px;border-radius:999px;font-weight:800;font-size:15px;min-height:48px;display:inline-flex;align-items:center;justify-content:center}
+button:hover,.btn:hover{filter:brightness(1.15)}
+.btn-light{background:#fff;color:#172033;border:2px solid #172033}
+.btn-green{background:#00a88f}
+.btn-pink{background:#ff5ca8}
+.out{margin-top:12px;background:#fff;color:#172033;border-radius:14px;padding:14px;font-weight:700;white-space:pre-wrap;overflow-wrap:anywhere}
+.q{border:1.5px solid var(--line);border-radius:16px;padding:14px;margin:12px 0}
+.q p{color:#172033;font-weight:800;margin:0 0 10px}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;background:#f1f3ff;color:#172033;border:2px solid var(--line)}
+.opt.correct{background:#d8ffef;border-color:#00a88f}
+.opt.wrong{background:#ffe3ec;border-color:#ff5ca8}
+.fb{font-size:14px;color:var(--muted);margin-top:8px}
+.score{font-size:20px;font-weight:900}
+.bar{height:14px;background:#e6e9f2;border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#00a88f,#7ed957);border-radius:999px}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+th,td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}
+th{background:#eef1ff}
+canvas{width:100%;height:auto;background:#fff;border-radius:14px;border:1px solid #cbd2e8;display:block}
+.barchart{display:flex;align-items:flex-end;gap:8px;height:150px;margin-top:12px}
+.barchart div{flex:1;background:linear-gradient(180deg,#7c5cff,#ff5ca8);border-radius:10px 10px 0 0;color:#fff;text-align:center;font-weight:800;padding-top:6px;min-width:0}
+.check{accent-color:#00a88f;width:22px;height:22px}
+footer{color:var(--muted);font-size:13px;text-align:center;padding:24px 12px 40px}
+
+/* ---------- HP kecil: 320–480px ---------- */
+@media(max-width:480px){
+  :root{--gap:12px}
+  .wrap{padding:12px}
+  .topbar-inner{padding:10px 12px}
+  .logo{font-size:18px}
+  .school{font-size:12px}
+  nav.mainnav{margin-left:0;width:100%}
+  nav.mainnav a{flex:1;text-align:center;padding:11px 6px;font-size:13px}
+  .hero{border-radius:20px}
+  .hero .symbols{display:none}
+  .hero p{max-width:none}
+  .mission{grid-template-columns:1fr 1fr}
+  .mission div.pos{padding:12px 8px}
+  .grid{grid-template-columns:1fr}
+  .lab{padding:14px}
+  .lab .row{grid-template-columns:1fr}
+  .card .row{grid-template-columns:1fr !important}
+  .card{padding:16px;border-radius:18px}
+  .illus{font-size:52px}
+  table{font-size:14px}
+  .barchart{height:120px}
+}
+
+/* ---------- HP besar / tablet potret: 481–767px ---------- */
+@media(min-width:481px) and (max-width:767px){
+  .wrap{padding:16px;width:94vw}
+  .topbar-inner{width:94vw}
+  .hero .symbols{font-size:40px}
+  .mission{grid-template-columns:repeat(4,1fr)}
+  .grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+}
+
+/* ---------- Tablet landscape / laptop kecil: 768–1023px ---------- */
+@media(min-width:768px) and (max-width:1023px){
+  :root{--wrap:94vw}
+  .hero h1{font-size:38px}
+  .grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .card{padding:22px}
+}
+
+/* ---------- Laptop: 1024–1439px ---------- */
+@media(min-width:1024px) and (max-width:1439px){
+  :root{--wrap:1100px}
+  .hero h1{font-size:42px}
+  .grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+}
+
+/* ---------- Desktop besar: 1440–1919px ---------- */
+@media(min-width:1440px){
+  :root{--wrap:1280px;--base:17px;--gap:20px}
+  .hero h1{font-size:48px}
+  .hero .symbols{font-size:64px}
+  .card{padding:24px}
+  .card h2{font-size:23px}
+  .grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+}
+
+/* ---------- TV / PID 52 inci dan layar sangat besar: 1920px ke atas ----------
+   Di TV orang duduk lebih jauh, jadi huruf, tombol, dan kartu ikut membesar,
+   bukan hanya kolomnya yang melebar. */
+@media(min-width:1920px){
+  :root{--wrap:1600px;--base:20px;--gap:24px}
+  .topbar-inner{padding:16px 24px}
+  .logo{font-size:24px}
+  .school{font-size:16px}
+  nav.mainnav a{font-size:17px;padding:12px 18px}
+  .hero{border-radius:32px;padding:44px}
+  .hero h1{font-size:62px}
+  .hero p{font-size:22px;max-width:900px}
+  .hero .symbols{font-size:88px;right:24px}
+  .badge,.pill{font-size:16px;padding:8px 14px}
+  .card{padding:30px;border-radius:26px}
+  .card h2{font-size:28px}
+  .card h3{font-size:20px}
+  .grid{grid-template-columns:repeat(auto-fit,minmax(360px,1fr))}
+  .mission div.pos{padding:22px;font-size:19px}
+  .mission .pos small{font-size:15px}
+  .mission .num{font-size:34px}
+  .illus{font-size:84px}
+  button,.btn{font-size:19px;min-height:56px;padding:14px 24px}
+  input,select,textarea,.lab input,.lab select,.lab textarea{font-size:19px;padding:14px}
+  .lab{padding:26px}
+  .lab label{font-size:17px}
+  table{font-size:18px}
+  .q p{font-size:19px}
+  .score{font-size:24px}
+  footer{font-size:16px}
+}
+@media(min-width:2560px){
+  :root{--wrap:1900px;--base:22px}
+  .hero h1{font-size:72px}
+}
+@media print{nav.mainnav,.topbar,.btn,button{display:none!important}.hero{box-shadow:none}}

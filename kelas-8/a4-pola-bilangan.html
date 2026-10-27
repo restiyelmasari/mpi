@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A.4 Pola Bilangan — MathQuest Kelas VIII</title>
+<link rel="stylesheet" href="../assets/css/style.css"></head>
+<body data-elemen="aljabar" data-tp="A.4" data-judul="Pola Bilangan">
+<div class="topbar"><div class="topbar-inner"><div><div class="logo"><span>∑</span> MathQuest</div><div class="school">SMP Negeri 1 Anak Ratu Aji • Guru: Resti Yelma Sari, S.Pd.</div></div><nav class="mainnav"><a href="../index.html">Beranda</a><a href="../kelas-8/index.html">Kelas 8</a><a href="../kelas-8/progres.html">Progres Saya</a><a href="../kelas-8/atp.html">ATP Guru</a></nav></div></div>
+<div class="wrap">
+<section class="hero"><div class="symbols">π × ÷ √ ∑</div>
+<span class="badge">MISI A.4 • Semester 2 • 10 JP • CERITA BERGAMBAR</span>
+<h1>🧩 Pola Bilangan</h1>
+<p>2, 5, 8, 11, … Suku berikutnya bukan tebak-tebakan: selisihnya selalu 3. Jadi suku ke-100 pun bisa dihitung!</p>
+<div class="pillrow"><span class="pill">🎯 TP A.4</span><span class="pill">⏱ 10 JP</span><span class="pill">🏫 Kelas VIII Fase D</span></div></section>
+
+<section class="card" id="peta"><h2>🗺️ Peta Misi</h2><p>Centang setiap pos yang sudah kamu selesaikan. Bilah di bawah akan terisi.</p>
+<div class="mission">
+<div class="pos" data-pos="cerita"><div class="num">📖</div>Pos 1<small>Cerita / Tantangan</small></div>
+<div class="pos" data-pos="lab"><div class="num">🧪</div>Pos 2<small>Lab Interaktif</small></div>
+<div class="pos" data-pos="latihan"><div class="num">🎯</div>Pos 3<small>Arena Latihan</small></div>
+<div class="pos" data-pos="kuis"><div class="num">🏆</div>Pos 4<small>Kuis &amp; Lencana</small></div></div>
+<div class="bar" style="margin-top:14px"><i id="missionBar" style="width:0%"></i></div><p id="missionText">0 dari 4 pos misi selesai.</p>
+<label><input type="checkbox" class="mission-check check" data-pos="cerita"> Saya sudah membaca cerita / tantangan</label><br>
+<label><input type="checkbox" class="mission-check check" data-pos="lab"> Saya sudah mencoba Lab Interaktif</label><br>
+<label><input type="checkbox" class="mission-check check" data-pos="latihan"> Saya sudah mengerjakan Arena Latihan</label><br>
+<label><input type="checkbox" class="mission-check check" data-pos="kuis"> Saya sudah menyelesaikan kuis</label></section>
+
+<div class="grid">
+<section class="card"><h2>📖 Cerita / Tantangan</h2><div class="illus">🧩<small>Cerita bergambar</small></div><p>Pekarangan sekolah dihias ubin: baris pertama 2 ubin, lalu 5, 8, 11… Panitia ingin tahu berapa ubin pada baris ke-20 tanpa menyusun semuanya. Dengan pola aritmetika, jawabannya 2 + 19×3 = 59 ubin.</p></section>
+<section class="card"><h2>💡 Konsep Cepat</h2><ul><li>Pola aritmetika: selisih tetap. Suku ke-n: Uₙ = a + (n−1)b.</li><li>Pola geometri: rasio tetap. Contoh: 5, 10, 20, 40 (rasio 2).</li><li>Pola bilangan kuadrat: 1, 4, 9, 16, 25… Suku ke-n = n².</li></ul><p><span class="sticker">Ingat!</span> Tulis rumus ini di bukumu sebelum masuk lab.</p></section></div>
+
+<section class="card" style="margin-top:16px"><h2>🧪 Lab Interaktif</h2><div class="lab"><h3>🧪 Lab Pola</h3><p style="color:#cbd2e8">Pilih jenis pola, ubah suku pertama dan selisih/rasionya.</p><label>Jenis pola</label><select id="polaJenis"><option value="arit">Aritmetika</option><option value="geo">Geometri</option><option value="kuadrat">Bilangan kuadrat</option></select><div class="row"><div><label>Suku pertama (a)</label><input id="polaA1" type="number" value="2" step="1"></div><div><label>Selisih / rasio</label><input id="polaD" type="number" value="3" step="1"></div></div><label>Suku ke-n yang dicari</label><input id="polaN" type="number" value="10" step="1"><div class="out" id="polaOut"></div></div></section>
+
+<section class="card" style="margin-top:16px"><h2>🎯 Arena Latihan</h2><p>Kerjakan di buku, lalu diskusikan dengan teman sebangkumu.</p><ol><li>Level Pemula: Tentukan suku berikutnya dari 2, 5, 8, 11, … dan 5, 10, 20, 40, …</li><li>Level Menantang: Barisan aritmetika a = 3, beda 4. Berapa U₁₀?</li><li>Level Penjelajah: Tentukan rumus suku ke-n dari 1, 4, 9, 16, …</li></ol></section>
+
+<section class="card quiz" style="margin-top:16px"><h2>🏆 Kuis &amp; Lencana</h2><p>Jawaban langsung dinilai. Penjelasan muncul setelah kamu menjawab.</p><div class="q"><p>1. Suku berikutnya dari 2, 5, 8, 11, … adalah …</p><button type="button" class="opt" data-ok="0">13</button><button type="button" class="opt" data-ok="1">14</button><button type="button" class="opt" data-ok="0">15</button><button type="button" class="opt" data-ok="0">17</button><div class="fb" hidden>💡 Selisihnya 3, jadi 11 + 3 = 14.</div></div><div class="q"><p>2. Barisan aritmetika a = 3, beda 4. Nilai U₁₀ adalah …</p><button type="button" class="opt" data-ok="0">35</button><button type="button" class="opt" data-ok="1">39</button><button type="button" class="opt" data-ok="0">43</button><button type="button" class="opt" data-ok="0">47</button><div class="fb" hidden>💡 U₁₀ = 3 + 9×4 = 39.</div></div><div class="q"><p>3. Suku berikutnya dari 1, 4, 9, 16, … adalah …</p><button type="button" class="opt" data-ok="0">20</button><button type="button" class="opt" data-ok="0">24</button><button type="button" class="opt" data-ok="1">25</button><button type="button" class="opt" data-ok="0">36</button><div class="fb" hidden>💡 Itu bilangan kuadrat: 5² = 25.</div></div><div class="q"><p>4. Suku berikutnya dari 1, 1, 2, 3, 5, … adalah …</p><button type="button" class="opt" data-ok="0">6</button><button type="button" class="opt" data-ok="0">7</button><button type="button" class="opt" data-ok="1">8</button><button type="button" class="opt" data-ok="0">10</button><div class="fb" hidden>💡 Pola Fibonacci: 3 + 5 = 8.</div></div><div class="q"><p>5. Suku berikutnya dari 5, 10, 20, 40, … adalah …</p><button type="button" class="opt" data-ok="0">60</button><button type="button" class="opt" data-ok="1">80</button><button type="button" class="opt" data-ok="0">100</button><button type="button" class="opt" data-ok="0">120</button><div class="fb" hidden>💡 Rasionya 2, jadi 40 × 2 = 80.</div></div><p class="score-out score">Belum ada soal yang dijawab.</p></section>
+
+<section class="card" style="margin-top:16px"><h2>📤 Kirim Hasil ke Guru</h2>
+<p>Isi namamu, tekan <strong>Simpan &amp; Buat Ringkasan</strong>, lalu kirim ringkasan itu ke Ibu Resti lewat WhatsApp, salin, unduh, atau cetak. Progresmu juga tersimpan di perangkat ini dan bisa dilihat di halaman Progres Saya.</p>
+<div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div><label>Nama Murid</label><input id="namaMurid" type="text" placeholder="Nama lengkapmu"></div><div><label>Kelas</label><input id="kelasMurid" type="text" value="VIII" placeholder="Contoh: VIII A"></div></div>
+<p><button type="button" class="btn-green" id="simpanHasil">💾 Simpan &amp; Buat Ringkasan</button></p>
+<div id="hasilBox" hidden><div class="out" id="hasilOut"></div><p style="margin-top:12px">
+<button type="button" data-share="wa" class="btn">💬 Kirim via WhatsApp</button>
+<button type="button" data-share="salin" class="btn btn-light">📋 Salin</button>
+<button type="button" data-share="unduh" class="btn btn-light">⬇️ Unduh</button>
+<button type="button" data-share="cetak" class="btn btn-light">🖨️ Cetak</button></p></div>
+<p><strong>Refleksi singkat:</strong> Apa satu hal yang paling kamu pahami hari ini, dan apa yang masih membingungkan? Tulis di buku atau di bawah ini sebelum mengirim.</p>
+<textarea rows="3" placeholder="Tulis refleksimu di sini…"></textarea></section>
+
+<p style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><a class="btn btn-light" href="a3-ptlsv.html">← A.3 Pertidaksamaan Linear Satu Variabel (PtLSV)</a><a class="btn" href="a5-relasi-fungsi.html">A.5 Relasi dan Fungsi →</a></p>
+</div><footer>MathQuest Matematika Kelas VIII • Kurikulum Merdeka • Pendekatan Pembelajaran Mendalam<br>SMP Negeri 1 Anak Ratu Aji • Resti Yelma Sari, S.Pd. • Tahun Pelajaran 2026/2027 • Berjalan tanpa login, progres tersimpan di perangkat murid.</footer><script src="../assets/js/app.js"></script></body></html>
